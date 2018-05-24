@@ -179,6 +179,16 @@ namespace Squirrel
                 return;
             }
 
+            if (targetFile.Directory.Name.Contains("Launcher_Data"))
+            {
+                this.Log().Info("{0} hasn't changed, writing dummy file", relativePath);
+
+                File.Create(targetFile.FullName + ".diff").Dispose();
+                File.Create(targetFile.FullName + ".shasum").Dispose();
+                targetFile.Delete();
+                return;
+            }
+
             var oldData = File.ReadAllBytes(baseFileListing[relativePath]);
             var newData = File.ReadAllBytes(targetFile.FullName);
 
