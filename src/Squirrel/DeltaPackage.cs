@@ -179,7 +179,7 @@ namespace Squirrel
                 return;
             }
 
-            if (targetFile.Directory.Name.Contains("Launcher_Data"))
+            if (targetFile.Extension.Contains("resS"))
             {
                 this.Log().Info("{0} hasn't changed, writing dummy file", relativePath);
 
